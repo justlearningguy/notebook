@@ -83,27 +83,24 @@ function updateNote(){
     }
   })
 }
-function getTitleSlice(title) {
-  return title.substr(0, 60);
-}
 function createNewNote(){
   let date = moment(new Date());
   let object = {
     id: noteList.length,
-    title: noteTitleInput.value
+    title: noteTitleInput.value 
       ? noteTitleInput.value
-      : getTitleSlice(textarea.value)
+      : textarea.value
     ,
     text: textarea.value,
     date: date.format('LL'),
   }
   noteId = noteList.length; 
   noteList.unshift(object);
+  console.log(1)
   
 }
 // Обработчики событий
 function backIconClick() {
-  saveNote();
   editScreen.style.display = 'none';
   mainScreen.style.display = 'flex';
   bottomMenu.style.display = 'flex';
@@ -113,6 +110,7 @@ function backIconClick() {
   onLoad();
 }
 function saveNote() {
+  
   if(textarea.value){
     if(noteId < 0) {
       createNewNote();
