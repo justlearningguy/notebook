@@ -140,13 +140,14 @@ let h1 = document.querySelector('h1');
 let addNoteBtn = document.getElementById('add_note_button');
 let todosList = document.getElementById('to_dos_input_flex');
 let listContainer = document.getElementById('list_container');
+let notesCountBlock = document.querySelector('.notescount_block');
 function ToDo() {
   bottomMenuNotes.classList = "bottom_menu_column_unactive";
   bottomMenuNotesSvg.classList = 'bottom_menu_img_unactive';
   bottomMenuToDos.classList = "bottom_menu_column_active";
   bottomMenuToDosSvg.classList = 'bottom_menu_img_active';
   h1.innerText = 'To-Dos';
-  notesCount.style.display = 'none';
+  notesCountBlock.style.display = 'none';
   addNoteBtn.style.display = 'none';
   notesList.style.display = 'none';
   todosList.style.display = 'flex';
@@ -158,7 +159,7 @@ function Notes() {
   bottomMenuToDos.classList = "bottom_menu_column_unactive";
   bottomMenuToDosSvg.classList = 'bottom_menu_img_unactive';
   h1.innerText = 'Notes';
-  notesCount.style.display = 'block';
+  notesCountBlock.style.display = 'flex';
   addNoteBtn.style.display = 'flex'
   notesList.style.display = 'flex '
   todosList.style.display = 'none'
@@ -218,3 +219,14 @@ inputBox.addEventListener('keypress', function(e) {
         addTask()
     }
 })
+function info() {
+    let MainDiv = window.document.createElement('div');
+    let  NoteH= window.document.createElement('span');
+    NoteH.className = 'note_h';
+    MainDiv.classList = 'note_template'
+    MainDiv.style.display = 'flex';
+    NoteH.innerText = 'Made by Emil:)';
+    MainDiv.appendChild(NoteH);
+    notesList.appendChild(MainDiv);
+    setTimeout(function() { MainDiv.style.display= 'none'}, 3000);
+}

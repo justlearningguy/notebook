@@ -1,5 +1,13 @@
+:root {
+    --color-bg-primary: #000000;
+    --color-bg-secondary: #1F1F1F;
+    --color-primary: #ffffff;
+    --color-secondary: #A9A9A9;
+    --color-thirdly: #959595;
+    --color-accent: #0088ff;
+}
 body {
-    background: #292929;
+    background: var(--color-bg-primary);
     display: flex;
     justify-content: center;
     padding-top: 10px;
@@ -7,6 +15,7 @@ body {
 * {
     font-family: sans-serif;
 }
+* {-webkit-tap-highlight-color: rgba(0, 0, 0, 0)} 
 .main {
     display: flex;
     flex-direction: column;
@@ -14,7 +23,7 @@ body {
     width: 100%;
 }
 h1 {
-    color: white;
+    color: var(--color-primary);
     font-size: 30px;
     margin: 0;
 }
@@ -29,14 +38,14 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 30px;
     grid-template-rows: auto auto;
-    background: #454545;
+    background: var(--color-bg-secondary);
     border-radius: 10px;
     padding: 15px;
     column-gap: 40px;
     
 }
 .note_h {
-    color: white;
+    color: var(--color-primary);
     font-weight: bold;
     font-size: 20px;
     width: 100%;
@@ -46,24 +55,24 @@ h1 {
     display: -webkit-box;
 }
 .note_date {
-    color: hsl(208, 100%, 50%);
+    color: var(--color-secondary);
     font-size: 15px; 
     margin-top: 5px;
 }
 #notes_count {
     font-size: 18px;
-    color: hsl(208, 100%, 50%);
+    color: var(--color-thirdly);
     margin-bottom: 20px;
 }
 #add_note_button {
     width: 50px;
     height: 50px;
-    border-radius: 10px;
-    background: hsl(208, 100%, 50%);
+    border-radius: 50%;
+    background: #0088ff;
     right: 20px;
     bottom: 80px;
     position: fixed;
-    color: white;
+    color: #ffffff;
     font-weight: bold;
     font-size: 30px;
     display: flex;
@@ -73,7 +82,7 @@ h1 {
 #notes_list {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     flex-wrap: wrap;
 }
 .edit_screen {
@@ -83,38 +92,40 @@ h1 {
     width: 100%;
 }
 .back_arrow {
-    fill: #0088ff;
-    width: 30px;
-    height: 30px;
+    fill: var(--color-accent);
+    width: 25px;
+    height: 25px;
+    background: var(--color-bg-secondary);
+    padding: 10px;
+    border-radius: 10px;
 }
 .arrow_div {
-    background: #292929;
+    background: var(--color-bg-primary);
     position: fixed;
     width: 100%;
     top: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .note_title {
     margin-top: 40px;
     border: none;
-    background: #292929;
-    color: white;
+    background: var(--color-bg-primary);
+    color: var(--color-primary);
     font-weight: bold;
-    font-size: 25px;
+    font-size: 28px;
     outline:none;
-    border-bottom: 1px solid grey;
     width: 100%;
 }
 .note_text {
     height: 100%;
     width: 100%;
     font-family: sans-serif;
-    color: white;
+    color: var(--color-primary);
     outline: none;
     border: none;
     resize: none;
-    background: #292929;
+    background: var(--color-bg-primary);
     margin-top: 20px;
     font-size: 18px;
 }
@@ -123,9 +134,8 @@ h1 {
     height: 50px;
     position: fixed;
     bottom: 0;
-    background: #292929;
+    background: var(--color-bg-primary);
     left: 0;
-    border-top: 1px solid grey;
     display: flex;
     user-select: none;
 }
@@ -133,39 +143,37 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background:#454545;
+    background:var(--color-bg-secondary);
     width: 50%;
-    color:#0088ff;
+    color:var(--color-accent);
+    border-radius: 10px;
 }
 .bottom_menu_column_unactive {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 50%;
-    color:#454545;
+    color: var(--color-thirdly);
 }
 .bottom_menu_img_active {
-    stroke: #0088ff;
+    stroke: var(--color-accent);
     fill: none;
     width: 40px;
     height: 40px;
 }
 .bottom_menu_img_unactive {
-    stroke: #454545;
+    stroke: var(--color-thirdly);
     fill: none;
     width: 40px;
     height: 40px; 
 }
-
-
-
 #input_box {
     padding: 10px;
     border-radius: 10px;
     border: none;
     outline: none;
-    background: #454545;
-    color: white;
+    background: var(--color-bg-secondary);
+    color: var(--color-primary);
     font-size: 20px;
     height: 30px;
     font-weight: bold;
@@ -191,11 +199,11 @@ h1 {
     display: none;
     margin-top: 10px;
 }
-ul {
+#list_container {
     padding: 0;
     display: none;
     flex-direction: column;
-    row-gap: 15px;
+    row-gap: 12px;
 }
 ul li {
     list-style:none;
@@ -203,12 +211,12 @@ ul li {
     user-select: none;
     position: relative;
     font-size: 20px;
-    color: white;
+    color: var(--color-primary);
     font-weight: bold;
     word-break: break-word;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    background: #454545;
+    background: var(--color-bg-secondary);
     border-radius: 10px;
     padding: 15px;
     padding-left: 50px;
@@ -227,7 +235,7 @@ ul li::before {
 }
 ul li.checked {
     text-decoration: line-through;
-    color: grey;
+    color: var(--color-secondary);
 }
 ul li.checked::before {
     background-image: url('checked.png');
@@ -243,5 +251,12 @@ ul li span {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: hsl(208, 100%, 50%);
+    color: var(--color-accent);
+}
+#info_fixed {
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    top: -30px;
+    position: relative;
 }

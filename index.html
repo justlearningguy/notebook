@@ -8,10 +8,13 @@
     <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
     <link rel="icon" type="image/png" href="favicon/favicon.png">
 </head>
-<body>
+<body class="">
     <div class="main">
         <h1>Notes</h1>
-        <span id="notes_count"></span>
+        <div class="notescount_block" style="display:flex">
+            <span id="notes_count"></span>
+            <img onclick="info()" id="info_fixed" src="info.svg">
+        </div>
         <div id="notes_list"></div>
         <div onclick="addNoteIconClick()" id="add_note_button">+</div>
         <div id="to_dos_input_flex">
