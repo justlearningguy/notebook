@@ -31,7 +31,7 @@ const goToEdit = () => {
       textarea.value = elem.text;
     }
   });
-  textarea.focus();
+  
 }
 const createNewNoteBlock = (id, noteTitle, noteDate) => {
   let MainDiv = window.document.createElement('div');
@@ -89,17 +89,20 @@ function createNewNote(){
     id: noteList.length,
     title: noteTitleInput.value 
       ? noteTitleInput.value
-      : textarea.value
+      : titleSlice(textarea.value)
     ,
     text: textarea.value,
     date: date.format('LL'),
   }
   noteId = noteList.length; 
   noteList.unshift(object);
-  console.log(1)
-  
 }
 // Обработчики событий
+function titleSlice(title) {
+  let a = title.slice(0,60);
+  a = a.split('\n');
+  return a[0];
+}
 function backIconClick() {
   editScreen.style.display = 'none';
   mainScreen.style.display = 'flex';
@@ -109,8 +112,7 @@ function backIconClick() {
   notesList.innerHTML = '';
   onLoad();
 }
-function saveNote() {
-  
+function saveNote() { 
   if(textarea.value){
     if(noteId < 0) {
       createNewNote();
