@@ -8,12 +8,12 @@
     <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
     <link rel="icon" type="image/png" href="favicon/favicon.png">
 </head>
-<body class="">
+<body>
     <div class="main">
         <h1>Notes</h1>
         <div class="notescount_block" style="display:flex">
             <span id="notes_count"></span>
-            <img onclick="info()" id="info_fixed" src="info.svg">
+            <img onclick="info()" id="info_fixed" src="images/info.svg">
         </div>
         <div id="notes_list"></div>
         <div onclick="addNoteIconClick()" id="add_note_button">+</div>
@@ -22,6 +22,19 @@
             <button onclick="addTask()" id="add_task">+</button>
         </div>
         <ul id="list_container"></ul>
+    </div>
+    <div class="modal_box_bg">
+        <div class="modal_box_focus">
+            <div style="display: flex; align-items: center;">
+                <svg  class="info_back" onclick="infoBack()" viewBox="0 0 448 512"><path  d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+                <span id="modal_box_h">About</span>
+            </div>
+            <div id="modal_box_made">Made by <b>Emil</b> :)</div>
+            <div style="display: flex; align-items: center; margin-top: 10px;">
+                <div onclick="changeTheme()" class="theme_change_btn">LIGHT</div>
+                <div class="modal_box_theme_h">theme</div>
+            </div>
+        </div>
     </div>
     <div class="edit_screen">
         <div class="arrow_div"><svg  class="back_arrow" onclick="backIconClick()" viewBox="0 0 448 512"><path  d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></div> 

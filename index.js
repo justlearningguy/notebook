@@ -43,7 +43,7 @@ const createNewNoteBlock = (id, noteTitle, noteDate) => {
   MainDiv.className = 'note_template';
   NoteDate.className = 'note_date';
   delIcon.className = 'delete_icon';
-  delIcon.src = 'delete.svg';
+  delIcon.src = 'images/delete.svg';
   // Установка содержимого
   NoteDate.innerText = noteDate;
   NoteH.innerText = noteTitle;
@@ -204,13 +204,11 @@ function showData() {
 showData();
 inputBox.addEventListener('input', function() {
     if(inputBox.value.trim().length === 0) {
-        addTaskBtn.style.background = "#22639c";
-        addTaskBtn.style.color = "#c2e2ff";
+        addTaskBtn.style.background = "#146bb8";
         haveChars = false;
     }
     else {
         addTaskBtn.style.background = "#0088ff";
-        addTaskBtn.style.color = "#ffffff";
         haveChars = true;
     }
 })
@@ -220,13 +218,23 @@ inputBox.addEventListener('keypress', function(e) {
     }
 })
 function info() {
-    let MainDiv = window.document.createElement('div');
-    let  NoteH= window.document.createElement('span');
-    NoteH.className = 'note_h';
-    MainDiv.classList = 'note_template'
-    MainDiv.style.display = 'flex';
-    NoteH.innerText = 'Made by Emil:)';
-    MainDiv.appendChild(NoteH);
-    notesList.appendChild(MainDiv);
-    setTimeout(function() { MainDiv.style.display= 'none'}, 3000);
+    document.querySelector('.modal_box_bg').style.display = 'flex';
+}
+function infoBack() {
+  document.querySelector('.modal_box_bg').style.display = 'none';
+}
+
+//theme-change
+function changeTheme() {
+  document.querySelector('body').classList.toggle('darkstyle');
+  window.localStorage.setItem('theme', document.querySelector('body').classList)
+  if(document.querySelector('body').classList == 'darkstyle') {
+    document.querySelector('.theme_change_btn').innerText = 'DARK';
+  }
+  else {
+    document.querySelector('.theme_change_btn').innerText = 'LIGHT';
+  }
+}
+if(window.localStorage.getItem('theme') === 'darkstyle') {
+  changeTheme()
 }
