@@ -1,11 +1,10 @@
-
-let noteTitleInput = window.document.getElementById('noteTitleInput');
-let textarea = window.document.querySelector('textarea');
-let mainScreen = window.document.querySelector('.main');
-let editScreen = window.document.querySelector('.edit_screen');
-let bottomMenu = window.document.querySelector('.bottom_menu');
-let notesCount = window.document.getElementById('notes_count');
-let notesList = window.document.getElementById('notes_list');
+const noteTitleInput = window.document.getElementById('noteTitleInput');
+const textarea = window.document.querySelector('textarea');
+const mainScreen = window.document.querySelector('.main');
+const editScreen = window.document.querySelector('.edit_screen');
+const bottomMenu = window.document.querySelector('.bottom_menu');
+const notesCount = window.document.getElementById('notes_count');
+const notesList = window.document.getElementById('notes_list');
 
 //Переменные
 let noteList = [];
@@ -17,7 +16,6 @@ const removeNoteFromList = (id) => {
     if(elem.id === id) noteList.splice(index, 1);
   });
   window.localStorage.setItem('noteList', JSON.stringify(noteList));
-  //window.location.reload();
   notesList.innerHTML = '';
   onLoad();
 }
@@ -108,7 +106,6 @@ function backIconClick() {
   mainScreen.style.display = 'flex';
   bottomMenu.style.display = 'flex';
   noteId = -1;
-  //window.location.reload();
   notesList.innerHTML = '';
   onLoad();
 }
@@ -132,15 +129,15 @@ const addNoteIconClick = () => {
 }
 
 //Bottom-menu
-let bottomMenuNotes = document.getElementById('bottom_menu_notes');
-let bottomMenuToDos = document.getElementById('bottom_menu_todos');
-let bottomMenuNotesSvg = document.getElementById('bottom_menu_notes_svg');
-let bottomMenuToDosSvg = document.getElementById('bottom_menu_todos_svg');
-let h1 = document.querySelector('h1');
-let addNoteBtn = document.getElementById('add_note_button');
-let todosList = document.getElementById('to_dos_input_flex');
-let listContainer = document.getElementById('list_container');
-let notesCountBlock = document.querySelector('.notescount_block');
+const bottomMenuNotes = document.getElementById('bottom_menu_notes');
+const bottomMenuToDos = document.getElementById('bottom_menu_todos');
+const bottomMenuNotesSvg = document.getElementById('bottom_menu_notes_svg');
+const bottomMenuToDosSvg = document.getElementById('bottom_menu_todos_svg');
+const h1 = document.querySelector('h1');
+const addNoteBtn = document.getElementById('add_note_button');
+const listContainer = document.getElementById('list_container');
+const notesCountBlock = document.querySelector('.notescount_block');
+const inputBox = document.getElementById('input_box');
 function ToDo() {
   bottomMenuNotes.classList = "bottom_menu_column_unactive";
   bottomMenuNotesSvg.classList = 'bottom_menu_img_unactive';
@@ -150,7 +147,7 @@ function ToDo() {
   notesCountBlock.style.display = 'none';
   addNoteBtn.style.display = 'none';
   notesList.style.display = 'none';
-  todosList.style.display = 'flex';
+  inputBox.style.display = 'block';
   listContainer.style.display = 'flex';
 }
 function Notes() {
@@ -162,79 +159,72 @@ function Notes() {
   notesCountBlock.style.display = 'flex';
   addNoteBtn.style.display = 'flex'
   notesList.style.display = 'flex '
-  todosList.style.display = 'none'
+  inputBox.style.display = 'none'
   listContainer.style.display = 'none';
 }
 
 //to-dos
-const inputBox = document.getElementById('input_box');
-const addTaskBtn = document.getElementById('add_task');
-let haveChars = false;
+inputBox.value = "";
 function addTask() {
-    if(haveChars === true) {
-        let li = document.createElement('li')
-        li.innerHTML = inputBox.value;
-        listContainer.insertBefore(li,listContainer.children[0]);
-        inputBox.value = "";
-        addTaskBtn.style.background = "#22639c";
-        addTaskBtn.style.color = "#c2e2ff";
-        haveChars = false;
-        let span = document.createElement("span");
-        span.innerHTML = "\u00d7";
-        li.appendChild(span);
-        saveData();
-    }     
+  if(inputBox.value.trim().length != 0) {
+    let object = {
+      id: taskList.length,
+      text: inputBox.value,
+      checked: false,
+    }
+    taskList.push(object);
+    inputBox.value = "";
+    haveChars = false;
+    window.localStorage.setItem('taskList', JSON.stringify(taskList));
+    addTaskBlock(object.id, object.text, object.checked);
+}}
+function addTaskBlock(id,text,checked) {
+      let li = document.createElement('li')
+      li.innerHTML = text;
+      if(checked) {
+        li.classList.toggle("checked");
+      }
+      listContainer.insertBefore(li,listContainer.children[0]);
+      let span = document.createElement("span");
+      span.innerHTML = "\u00d7";
+      li.appendChild(span);
+      
+      li.addEventListener("click", function(e) {
+          taskList.map(function(elem) {
+            if(elem.id === id){
+                e.target.classList.toggle("checked");
+                elem.checked = !elem.checked;
+                window.localStorage.setItem('taskList', JSON.stringify(taskList)); 
+                }})});
+      span.addEventListener("click", function(e) {
+          taskList.map(function(elem, index) {
+            if(elem.id === id) {
+              e.target.parentElement.remove();
+              taskList.splice(index, 1);
+              window.localStorage.setItem('taskList', JSON.stringify(taskList));
+              }})});
 }
-listContainer.addEventListener("click", function(e) {
-    if(e.target.tagName === "LI") {
-        e.target.classList.toggle("checked");
-        saveData();
-    }
-    else if(e.target.tagName === "SPAN") {
-        e.target.parentElement.remove();
-        saveData();
-    }
-}, false)
-function saveData() {
-    localStorage.setItem("to-dos", listContainer.innerHTML);
-}
-function showData() {
-    listContainer.innerHTML = localStorage.getItem("to-dos");
-}
-showData();
-inputBox.addEventListener('input', function() {
-    if(inputBox.value.trim().length === 0) {
-        addTaskBtn.style.background = "#146bb8";
-        haveChars = false;
-    }
-    else {
-        addTaskBtn.style.background = "#0088ff";
-        haveChars = true;
-    }
-})
+function showTaskList() {
+  listContainer.innerHTML = '';
+  taskList = window.localStorage.getItem('taskList')
+  ? JSON.parse(window.localStorage.getItem('taskList'))
+  : [];
+  if(taskList) {
+    taskList.map(elem => {
+      addTaskBlock(elem.id,elem.text,elem.checked);
+  });
+}}
+showTaskList();
 inputBox.addEventListener('keypress', function(e) {
-    if(e.keyCode === 13) {
-        addTask()
-    }
+  if(e.keyCode === 13) {
+    addTask();
+  }
 })
+
+//about pop-up
 function info() {
     document.querySelector('.modal_box_bg').style.display = 'flex';
 }
 function infoBack() {
   document.querySelector('.modal_box_bg').style.display = 'none';
-}
-
-//theme-change
-function changeTheme() {
-  document.querySelector('body').classList.toggle('darkstyle');
-  window.localStorage.setItem('theme', document.querySelector('body').classList)
-  if(document.querySelector('body').classList == 'darkstyle') {
-    document.querySelector('.theme_change_btn').innerText = 'DARK';
-  }
-  else {
-    document.querySelector('.theme_change_btn').innerText = 'LIGHT';
-  }
-}
-if(window.localStorage.getItem('theme') === 'darkstyle') {
-  changeTheme()
 }

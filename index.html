@@ -9,6 +9,20 @@
     <link rel="icon" type="image/png" href="favicon/favicon.png">
 </head>
 <body>
+    <script>
+        function changeTheme() {
+            document.querySelector('body').classList.toggle('darkstyle');
+            window.localStorage.setItem('theme', document.querySelector('body').classList)
+            if(document.querySelector('body').classList == 'darkstyle') {
+                document.querySelector('.theme_change_btn').innerText = 'DARK';    
+            }
+            else {
+                document.querySelector('.theme_change_btn').innerText = 'LIGHT';
+            }}
+
+            if(window.localStorage.getItem('theme') === 'darkstyle') {
+                document.querySelector('body').classList.toggle('darkstyle');}
+    </script>
     <div class="main">
         <h1>Notes</h1>
         <div class="notescount_block" style="display:flex">
@@ -17,10 +31,7 @@
         </div>
         <div id="notes_list"></div>
         <div onclick="addNoteIconClick()" id="add_note_button">+</div>
-        <div id="to_dos_input_flex">
-            <input id="input_box" type="text" placeholder="Buy some vegetables">
-            <button onclick="addTask()" id="add_task">+</button>
-        </div>
+        <input id="input_box" type="text" placeholder="Buy some vegetables">
         <ul id="list_container"></ul>
     </div>
     <div class="modal_box_bg">
@@ -71,6 +82,11 @@
         
     <script src="moment.js"></script>
     <script src="index.js"></script>
+    <script>
+        if(window.localStorage.getItem('theme') === 'darkstyle') {
+            document.querySelector('.theme_change_btn').innerText = 'DARK';
+        }
+    </script>
 </body>
 </html>
 </body>
