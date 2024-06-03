@@ -136,7 +136,6 @@ const bottomMenuToDosSvg = document.getElementById('bottom_menu_todos_svg');
 const h1 = document.querySelector('h1');
 const addNoteBtn = document.getElementById('add_note_button');
 const listContainer = document.getElementById('list_container');
-const notesCountBlock = document.querySelector('.notescount_block');
 const inputBox = document.getElementById('input_box');
 function ToDo() {
   bottomMenuNotes.classList = "bottom_menu_column_unactive";
@@ -144,7 +143,7 @@ function ToDo() {
   bottomMenuToDos.classList = "bottom_menu_column_active";
   bottomMenuToDosSvg.classList = 'bottom_menu_img_active';
   h1.innerText = 'To-Dos';
-  notesCountBlock.style.display = 'none';
+  notesCount.style.display = 'none';
   addNoteBtn.style.display = 'none';
   notesList.style.display = 'none';
   inputBox.style.display = 'block';
@@ -156,7 +155,7 @@ function Notes() {
   bottomMenuToDos.classList = "bottom_menu_column_unactive";
   bottomMenuToDosSvg.classList = 'bottom_menu_img_unactive';
   h1.innerText = 'Notes';
-  notesCountBlock.style.display = 'flex';
+  notesCount.style.display = 'flex';
   addNoteBtn.style.display = 'flex'
   notesList.style.display = 'flex '
   inputBox.style.display = 'none'
@@ -224,7 +223,20 @@ inputBox.addEventListener('keypress', function(e) {
 //about pop-up
 function info() {
     document.querySelector('.modal_box_bg').style.display = 'flex';
+    setTimeout(function() {
+      document.querySelector('.modal_box_bg').style.opacity = '1';
+    }, 0);
 }
 function infoBack() {
-  document.querySelector('.modal_box_bg').style.display = 'none';
+  document.querySelector('.modal_box_bg').style.opacity = '0';
+  setTimeout(function() {
+    document.querySelector('.modal_box_bg').style.display = 'none';
+  }, 300);
+  
 }
+document.querySelector('.modal_box_bg').addEventListener( 'click', (e) => {
+	const withinBoundaries = e.composedPath().includes(document.querySelector(".modal_box_focus"));
+	if ( ! withinBoundaries ) {
+		infoBack()
+	}
+})

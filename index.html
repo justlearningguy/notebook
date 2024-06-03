@@ -24,11 +24,24 @@
                 document.querySelector('body').classList.toggle('darkstyle');}
     </script>
     <div class="main">
-        <h1>Notes</h1>
-        <div class="notescount_block" style="display:flex">
-            <span id="notes_count"></span>
-            <img onclick="info()" id="info_fixed" src="images/info.svg">
+        <div style="display: flex; align-items: center;">
+            <h1>Notes</h1>
+            <svg  onclick="info()" id="info_fixed" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"  stroke-width="1" stroke-linecap="round" stroke-linejoin="miter">
+
+                <g id="SVGRepo_iconCarrier">
+                
+                <line x1="11.99" y1="6" x2="12" y2="6" stroke-linecap="round" stroke-width="2"/>
+                
+                <line x1="11.99" y1="12" x2="12" y2="12" stroke-linecap="round" stroke-width="2"/>
+                
+                <line x1="11.99" y1="18" x2="12" y2="18" stroke-linecap="round" stroke-width="2"/>
+                
+                </g>
+                
+            </svg>
         </div>
+        
+        <span id="notes_count" ></span>
         <div id="notes_list"></div>
         <div onclick="addNoteIconClick()" id="add_note_button">+</div>
         <input id="input_box" type="text" placeholder="Buy some vegetables">
@@ -36,10 +49,6 @@
     </div>
     <div class="modal_box_bg">
         <div class="modal_box_focus">
-            <div style="display: flex; align-items: center;">
-                <svg  class="info_back" onclick="infoBack()" viewBox="0 0 448 512"><path  d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
-                <span id="modal_box_h">About</span>
-            </div>
             <div id="modal_box_made">Made by <b>Emil</b> :)</div>
             <div style="display: flex; align-items: center; margin-top: 10px;">
                 <div onclick="changeTheme()" class="theme_change_btn">LIGHT</div>
@@ -50,7 +59,7 @@
     <div class="edit_screen">
         <div class="arrow_div"><svg  class="back_arrow" onclick="backIconClick()" viewBox="0 0 448 512"><path  d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></div> 
         <input id="noteTitleInput" maxlength="60" onchange="saveNote()" class="note_title" placeholder="Title">
-        <textarea onchange="saveNote()" placeholder="your note" class="note_text"></textarea>
+        <textarea  onchange="saveNote()" placeholder="Write something..." class="note_text"></textarea>
     </div>
 
     <div class="bottom_menu">

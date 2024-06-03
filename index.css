@@ -8,7 +8,7 @@
 }
 .darkstyle {
     --color-bg-primary: #161617;
-    --color-bg-secondary: #232325;
+    --color-bg-secondary: #212224;
     --color-primary: #ffffff;
     --color-secondary: #AEAEAE;
     --color-thirdly: #A2A2A2;
@@ -23,9 +23,20 @@ body {
     padding-top: 10px;
 }
 * {
-    font-family: sans-serif;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
 }
+@font-face {
+    font-family: robotoRegular;
+    src: url('Roboto/Roboto-Regular.ttf');
+   }
+@font-face {
+    font-family: robotoLight;
+    src: url('Roboto/Roboto-Light.ttf');
+   }
+@font-face {
+    font-family: robotoBold;
+    src: url('Roboto/Roboto-Bold.ttf');
+   }
 .main {
     display: flex;
     flex-direction: column;
@@ -36,6 +47,8 @@ h1 {
     color: var(--color-primary);
     font-size: 30px;
     margin: 0;
+    font-family: robotoBold;
+    font-weight:  normal;
 }
 .delete_icon{
     width: 30px;
@@ -51,13 +64,11 @@ h1 {
     background: var(--color-bg-secondary);
     border-radius: 10px;
     padding: 15px;
-    column-gap: 40px;
-    
 }
 .note_h {
     color: var(--color-primary);
-    font-weight: bold;
     font-size: 20px;
+    font-family: robotoBold;
     width: 100%;
     overflow: hidden;
     -webkit-line-clamp: 1;
@@ -68,11 +79,13 @@ h1 {
     color: var(--color-secondary);
     font-size: 15px; 
     margin-top: 5px;
+    font-family: robotoRegular;
 }
 #notes_count {
     font-size: 18px;
     color: var(--color-thirdly);
     margin-bottom: 20px;
+    font-family: robotoRegular;
 }
 #add_note_button {
     width: 50px;
@@ -83,7 +96,7 @@ h1 {
     bottom: 80px;
     position: fixed;
     color: #ffffff;
-    font-weight: bold;
+    font-family: robotoBold;
     font-size: 30px;
     display: flex;
     justify-content: center;
@@ -101,25 +114,22 @@ h1 {
     flex-direction: column;
     height: 100vh; 
     width: 100%;
+    padding: 0;
 }
 .back_arrow {
-    fill: var(--color-accent);
-    width: 25px;
+    fill: var(--color-primary);
     height: 25px;
-    background: var(--color-bg-secondary);
-    padding: 10px;
-    border-radius: 10px;
 }
 .arrow_div {
     background: var(--color-bg-primary);
     position: fixed;
     width: 100%;
-    top: 0;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    top: 0;  
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 .note_title {
-    margin-top: 40px;
+    margin-top: 30px;
     border: none;
     background: var(--color-bg-primary);
     color: var(--color-primary);
@@ -127,6 +137,7 @@ h1 {
     font-size: 28px;
     outline:none;
     width: 100%;
+    font-family: robotoBold;
 }
 .note_text {
     height: 100%;
@@ -137,8 +148,11 @@ h1 {
     border: none;
     resize: none;
     background: var(--color-bg-primary);
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 18px;
+    font-family: robotoRegular;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 .bottom_menu {
     width: 100%;
@@ -149,6 +163,8 @@ h1 {
     left: 0;
     display: flex;
     user-select: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .bottom_menu_column_active {
@@ -157,6 +173,7 @@ h1 {
     align-items: center;
     width: 50%;
     color:var(--color-accent);
+    font-family: robotoRegular;
     
 }
 .bottom_menu_column_unactive {
@@ -165,6 +182,7 @@ h1 {
     align-items: center;
     width: 50%;
     color: var(--color-thirdly);
+    font-family: robotoRegular;
 }
 .bottom_menu_img_active {
     stroke: var(--color-accent);
@@ -187,9 +205,9 @@ h1 {
     color: var(--color-primary);
     font-size: 20px;
     height: 30px;
-    font-weight: bold;
     margin-top: 10px;
     display: none;
+    font-family: robotoRegular;
 }
 #list_container {
     padding: 0;
@@ -205,7 +223,7 @@ ul li {
     position: relative;
     font-size: 20px;
     color: var(--color-primary);
-    font-weight: bold;
+    font-family: robotoBold;
     word-break: break-word;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -215,7 +233,6 @@ ul li {
     padding-left: 50px;
     padding-right: 30px;
     display: flex;
-    align-items: center;
 }
 ul li::before {
     content: '';
@@ -227,6 +244,7 @@ ul li::before {
     background-size: cover;
     background-position: center;
     left: 10px;
+    top: 10px;
 }
 ul li.checked {
     text-decoration: line-through;
@@ -237,22 +255,19 @@ ul li.checked::before {
 }
 ul li span {
     font-size: 30px;
+    line-height: 20px;
     position: absolute;
-    right: 0;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    right: 10px;
+    top: 10px;
     color: var(--color-accent);
 }
 #info_fixed {
     width: 30px;
     height: 30px;
     margin-left: auto;
-    top: -30px;
-    position: relative;
+    margin-left: auto;
+    stroke: var(--color-primary);
+    fill: none;
 }
 .modal_box_bg {
     left: 0;
@@ -263,23 +278,20 @@ ul li span {
     background: rgba(0,0,0,0.5);
     z-index: 999;
     display: none;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
     user-select: none;
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 .modal_box_focus {
-    width: 80%;
+    height: fit-content;
+    margin-right: 10px;
+    margin-top: 60px;
     background: var(--color-bg-secondary);
     border-radius: 10px;
     padding: 20px;
     display: flex;
     flex-direction: column;
-}
-#modal_box_h {
-    color: var(--color-primary);
-    font-size: 25px;
-    font-weight: bold;
-    margin-left: 10px;
 }
 .info_back {
     fill: var(--color-accent);
@@ -289,12 +301,12 @@ ul li span {
 #modal_box_made {
     color:var(--color-primary);
     font-size: 18px;
-    margin-top: 15px;
+    font-family: robotoBold;
 }
 .modal_box_theme_h {
     color: var(--color-primary);
     font-size: 20px;
-    font-weight: bold;
+    font-family: robotoRegular;
     margin-left: 5px;
 }
 .theme_change_btn {
@@ -302,6 +314,6 @@ ul li span {
     padding: 10px;
     border-radius: 10px;
     color: var(--color-primary);
-    font-weight: bold;
+    font-family: robotoBold;
     cursor: pointer;
 }
