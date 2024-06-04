@@ -1,5 +1,5 @@
 const noteTitleInput = window.document.getElementById('noteTitleInput');
-const textarea = window.document.querySelector('textarea');
+const textarea = window.document.querySelector('.note_text');
 const mainScreen = window.document.querySelector('.main');
 const editScreen = window.document.querySelector('.edit_screen');
 const bottomMenu = window.document.querySelector('.bottom_menu');
@@ -80,7 +80,9 @@ function updateNote(){
   // Обновление заметки по noteId
   noteList.map(function(elem) {
     if(elem.id === noteId){
-      elem.title = noteTitleInput.value;
+      if(noteTitleInput.value.trim().length !=0 && noteTitleInput.value != 'No title') {
+        elem.title = noteTitleInput.value;
+      }
       elem.text = textarea.value;
     }
   })
@@ -89,9 +91,9 @@ function createNewNote(){
   let date = moment(new Date());
   let object = {
     id: noteList.length,
-    title: noteTitleInput.value 
+    title: noteTitleInput.value.trim().length !=0
       ? noteTitleInput.value
-      : titleSlice(textarea.value)
+      : 'No title'
     ,
     text: textarea.value,
     date: date.format('LL'),
@@ -100,11 +102,6 @@ function createNewNote(){
   noteList.unshift(object);
 }
 // Обработчики событий
-function titleSlice(title) {
-  let a = title.slice(0,60);
-  a = a.split('\n');
-  return a[0];
-}
 function backIconClick() {
   editScreen.style.display = 'none';
   mainScreen.style.display = 'flex';
