@@ -50,7 +50,11 @@ const createNewNoteBlock = (id, noteTitle, noteDate) => {
     noteId = id;
     goToEdit();
   });
-  delIcon.addEventListener('click', () => removeNoteFromList(id));
+  delIcon.addEventListener('click', function() {  
+    MainDiv.style.opacity = '0';
+    setTimeout(function() {
+      removeNoteFromList(id);
+  }, 300 )});
   // Добавление элементов
   MainDiv.appendChild(NoteH);
   MainDiv.appendChild(delIcon);
@@ -198,7 +202,10 @@ function addTaskBlock(id,text,checked) {
       span.addEventListener("click", function(e) {
           taskList.map(function(elem, index) {
             if(elem.id === id) {
-              e.target.parentElement.remove();
+              e.target.parentElement.style.opacity = '0';
+              setTimeout(function(){
+                e.target.parentElement.remove();
+              },300)
               taskList.splice(index, 1);
               window.localStorage.setItem('taskList', JSON.stringify(taskList));
               }})});

@@ -24,6 +24,7 @@ body {
 }
 * {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
+    transition: background-color 0.3s, color 0.3s;
 }
 @font-face {
     font-family: robotoRegular;
@@ -34,8 +35,8 @@ body {
     src: url('Roboto/Roboto-Light.ttf');
    }
 @font-face {
-    font-family: robotoBold;
-    src: url('Roboto/Roboto-Bold.ttf');
+    font-family: robotoMedium;
+    src: url('Roboto/Roboto-Medium.ttf');
    }
 .main {
     display: flex;
@@ -47,7 +48,7 @@ h1 {
     color: var(--color-primary);
     font-size: 30px;
     margin: 0;
-    font-family: robotoBold;
+    font-family: robotoMedium;
     font-weight:  normal;
 }
 .delete_icon{
@@ -64,11 +65,12 @@ h1 {
     background: var(--color-bg-secondary);
     border-radius: 10px;
     padding: 15px;
+    transition: opacity 0.3s;
 }
 .note_h {
     color: var(--color-primary);
     font-size: 20px;
-    font-family: robotoBold;
+    font-family: robotoRegular;
     width: 100%;
     overflow: hidden;
     -webkit-line-clamp: 1;
@@ -85,7 +87,7 @@ h1 {
     font-size: 18px;
     color: var(--color-thirdly);
     margin-bottom: 20px;
-    font-family: robotoRegular;
+    font-family: robotoLight;
 }
 #add_note_button {
     width: 50px;
@@ -96,7 +98,7 @@ h1 {
     bottom: 80px;
     position: fixed;
     color: #ffffff;
-    font-family: robotoBold;
+    font-family: robotoMedium;
     font-size: 30px;
     display: flex;
     justify-content: center;
@@ -137,7 +139,7 @@ h1 {
     font-size: 28px;
     outline:none;
     width: 100%;
-    font-family: robotoBold;
+    font-family: robotoMedium;
 }
 .note_text {
     height: 100%;
@@ -223,7 +225,7 @@ ul li {
     position: relative;
     font-size: 20px;
     color: var(--color-primary);
-    font-family: robotoBold;
+    font-family: robotoRegular;
     word-break: break-word;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -233,6 +235,7 @@ ul li {
     padding-left: 50px;
     padding-right: 30px;
     display: flex;
+    transition: opacity 0.3s, color 0.3s;
 }
 ul li::before {
     content: '';
@@ -244,7 +247,7 @@ ul li::before {
     background-size: cover;
     background-position: center;
     left: 10px;
-    top: 10px;
+    top: 12px;
 }
 ul li.checked {
     text-decoration: line-through;
@@ -255,16 +258,14 @@ ul li.checked::before {
 }
 ul li span {
     font-size: 30px;
-    line-height: 20px;
     position: absolute;
     right: 10px;
-    top: 10px;
+    top: 8px;
     color: var(--color-accent);
 }
 #info_fixed {
     width: 30px;
     height: 30px;
-    margin-left: auto;
     margin-left: auto;
     stroke: var(--color-primary);
     fill: none;
@@ -289,7 +290,7 @@ ul li span {
     margin-top: 60px;
     background: var(--color-bg-secondary);
     border-radius: 10px;
-    padding: 20px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
 }
@@ -301,7 +302,7 @@ ul li span {
 #modal_box_made {
     color:var(--color-primary);
     font-size: 18px;
-    font-family: robotoBold;
+    font-family: robotoMedium;
 }
 .modal_box_theme_h {
     color: var(--color-primary);
@@ -314,6 +315,6 @@ ul li span {
     padding: 10px;
     border-radius: 10px;
     color: var(--color-primary);
-    font-family: robotoBold;
+    font-family: robotoMedium;
     cursor: pointer;
 }
