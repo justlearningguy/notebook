@@ -1,11 +1,16 @@
+const noteTitleInput = window.document.getElementById('noteTitleInput');
+const textarea = window.document.querySelector('.note_text');
 const mainScreen = window.document.querySelector('.main');
+const editScreen = window.document.querySelector('.edit_screen');
 const bottomMenu = window.document.querySelector('.bottom_menu');
 const notesCount = window.document.getElementById('notes_count');
 const notesList = window.document.getElementById('notes_list');
-window.localStorage.setItem('editingNote', '');
+
+//Переменные
 let noteList = [];
 let noteId = -1;
 
+// Функции
 const removeNoteFromList = (id) => {
   noteList.map((elem, index) => {
     if(elem.id === id) noteList.splice(index, 1);
@@ -15,16 +20,13 @@ const removeNoteFromList = (id) => {
   onLoad();
 }
 const goToEdit = () => {
+  mainScreen.style.display = 'none';
+  editScreen.style.display = 'flex';
+  bottomMenu.style.display = 'none';
   noteList.map(elem => {
     if(elem.id === noteId){
-      editingNote = {
-        title: elem.title,
-        text: elem.text,
-        noteList: noteList,
-        id: elem.id,
-      }
-      window.localStorage.setItem('editingNote', JSON.stringify(editingNote));
-      window.location.href = 'notes.html';
+      noteTitleInput.value = elem.title;
+      textarea.value = elem.text;
     }
   });
   
@@ -34,20 +36,24 @@ const createNewNoteBlock = (id, noteTitle, noteDate) => {
   let  NoteH= window.document.createElement('span');
   let NoteDate = window.document.createElement('span');
   let delIcon = window.document.createElement('img');
+  // Установка классов
   NoteH.className = 'note_h';
   MainDiv.className = 'note_template';
   NoteDate.className = 'note_date';
   delIcon.className = 'delete_icon';
   delIcon.src = 'images/delete.svg';
+  // Установка содержимого
   NoteDate.innerText = noteDate;
   NoteH.innerText = noteTitle;
+  // Обработчики событий
   NoteH.addEventListener('click', () => {
     noteId = id;
     goToEdit();
   });
   delIcon.addEventListener('click', function() {  
-    removeNoteFromList(id);
+      removeNoteFromList(id);
   });
+  // Добавление элементов
   MainDiv.appendChild(NoteH);
   MainDiv.appendChild(delIcon);
   MainDiv.appendChild(NoteDate);
@@ -67,8 +73,58 @@ const onLoad = () => {
 }
 onLoad();
 
+// Утилиты для обработчиков
+function updateNote(){
+  // Обновление заметки по noteId
+  noteList.map(function(elem) {
+    if(elem.id === noteId){
+      if(noteTitleInput.value.trim().length !=0 && noteTitleInput.value != 'No title') {
+        elem.title = noteTitleInput.value;
+      }
+      elem.text = textarea.value;
+    }
+  })
+}
+function createNewNote(){
+  let date = moment(new Date());
+  let object = {
+    id: noteList.length,
+    title: noteTitleInput.value.trim().length !=0
+      ? noteTitleInput.value
+      : 'No title'
+    ,
+    text: textarea.value,
+    date: date.format('LL'),
+  }
+  noteId = noteList.length; 
+  noteList.unshift(object);
+}
+// Обработчики событий
+function backIconClick() {
+  editScreen.style.display = 'none';
+  mainScreen.style.display = 'flex';
+  bottomMenu.style.display = 'flex';
+  noteId = -1;
+  notesList.innerHTML = '';
+  onLoad();
+}
+function saveNote() { 
+  if(textarea.value){
+    if(noteId < 0) {
+      createNewNote();
+    }
+    else {
+      updateNote();
+    }
+    window.localStorage.setItem('noteList', JSON.stringify(noteList));
+  }
+}
 const addNoteIconClick = () => {
-  window.location.href = 'notes.html';
+  mainScreen.style.display = 'none';
+  editScreen.style.display = 'flex';
+  bottomMenu.style.display = 'none';
+  noteTitleInput.value = '';
+  textarea.value = '';
 }
 
 //Bottom-menu
@@ -121,39 +177,35 @@ function addTask() {
     addTaskBlock(object.id, object.text, false);
 }}
 function addTaskBlock(id,text,checked) {
-      //creating Task DOM element
       let li = document.createElement('li')
-      li.innerText = text;
+      li.innerHTML = text;
       if(checked) {
-        li.classList = "checked";
+        li.classList.toggle("checked");
       }
+      listContainer.insertBefore(li,listContainer.children[0]);
       let span = document.createElement("span");
       span.innerHTML = "\u00d7";
       li.appendChild(span);
-      listContainer.insertBefore(li,listContainer.children[0]);
       
-
-      //Checking task as done - event listener
       li.addEventListener("click", function(e) {
-        taskList.map(function(elem) {
-          if(elem.id === id){
-              e.target.classList.toggle("checked");
-              elem.checked = !elem.checked;
-              window.localStorage.setItem('taskList', JSON.stringify(taskList)); 
-              }})});
-
-      //Deleting task - event listener
+          taskList.map(function(elem) {
+            if(elem.id === id){
+                e.target.classList.toggle("checked");
+                elem.checked = !elem.checked;
+                window.localStorage.setItem('taskList', JSON.stringify(taskList)); 
+                }})});
       span.addEventListener("click", function(e) {
           taskList.map(function(elem, index) {
             if(elem.id === id) {
-              e.target.parentElement.remove();
-              taskList.splice(index, 1);
+                e.target.parentElement.remove();
+                taskList.splice(index, 1);
+              };
+              
               window.localStorage.setItem('taskList', JSON.stringify(taskList));
-              }})});
+            })});
 }
-
-//rendering content at startup
 function showTaskList() {
+  listContainer.innerHTML = '';
   taskList = window.localStorage.getItem('taskList')
   ? JSON.parse(window.localStorage.getItem('taskList'))
   : [];
@@ -163,8 +215,6 @@ function showTaskList() {
   });
 }}
 showTaskList();
-
-//InputBox event listener - on clicking Enter
 inputBox.addEventListener('keypress', function(e) {
   if(e.keyCode === 13) {
     addTask();
