@@ -1,0 +1,79 @@
+:root {
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #dcdcda;
+    --color-primary: #000000;
+    --color-secondary: #444444;
+    --color-thirdly: #595959;
+    --color-accent: #0088ff;
+}
+.darkstyle {
+    --color-bg-primary: #161617;
+    --color-bg-secondary: #212224;
+    --color-primary: #ffffff;
+    --color-secondary: #AEAEAE;
+    --color-thirdly: #A2A2A2;
+}
+body {
+    background: var(--color-bg-primary);
+}
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
+}
+@font-face {
+    font-family: robotoRegular;
+    src: url('Roboto/Roboto-Regular.ttf');
+   }
+@font-face {
+    font-family: robotoMedium;
+    src: url('Roboto/Roboto-Medium.ttf');
+   }
+.main {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    width: 100%;
+}
+.edit_screen {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+}
+.back_arrow {
+    fill: var(--color-primary);
+    height: 25px;
+}
+.arrow_div {
+    background: var(--color-bg-primary);
+    position: fixed;
+    width: 100%;
+    top: 0;  
+    left: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+.note_title {
+    border: none;
+    background: var(--color-bg-primary);
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size: 28px;
+    outline:none;
+    width: 100%;
+    font-family: robotoMedium;
+}
+.note_text {
+    height: 100vh;
+    width: 100%;
+    margin-top: 85px;
+    color: var(--color-primary);
+    outline: none;
+    border: none;
+    resize: none;
+    background: var(--color-bg-primary);
+    font-size: 18px;
+    font-family: robotoRegular;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

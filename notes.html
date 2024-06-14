@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Notebook</title>
+    <link rel="stylesheet" href="notes.css">
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+    <link rel="icon" type="image/png" href="favicon/favicon.png">
+</head>
+<body>
+    <script>
+            if(window.localStorage.getItem('theme') === 'darkstyle') {
+                document.querySelector('body').classList.toggle('darkstyle');}
+    </script>
+    <div class="main">
+    <div class="edit_screen">
+        <div class="arrow_div">
+            <svg  class="back_arrow" onclick="backIconClick()" viewBox="0 0 448 512"><path  d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            <input id="noteTitleInput" maxlength="60" onchange="saveNote()" class="note_title" placeholder="Title">
+        </div> 
+        <textarea onchange="saveNote()" placeholder="Write something..." class="note_text"></textarea>
+    </div>
+    </div>
+    <script src="moment.js"></script>
+    <script src="notes.js"></script>
+</body>
+</html>
+</body>
+</html>

@@ -62,7 +62,6 @@ h1 {
     background: var(--color-bg-secondary);
     border-radius: 10px;
     padding: 15px;
-    transition: opacity 0.3s;
 }
 .note_h {
     color: var(--color-primary);
@@ -107,50 +106,6 @@ h1 {
     gap: 12px;
     flex-wrap: wrap;
     margin-bottom: 130px;
-}
-.edit_screen {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    padding: 0;
-}
-.back_arrow {
-    fill: var(--color-primary);
-    height: 25px;
-}
-.arrow_div {
-    background: var(--color-bg-primary);
-    position: fixed;
-    width: 100%;
-    top: 0;  
-    left: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-}
-.note_title {
-    border: none;
-    background: var(--color-bg-primary);
-    color: var(--color-primary);
-    font-weight: bold;
-    font-size: 28px;
-    outline:none;
-    width: 100%;
-    font-family: robotoMedium;
-}
-.note_text {
-    height: 100vh;
-    width: 100%;
-    margin-top: 85px;
-    color: var(--color-primary);
-    outline: none;
-    border: none;
-    resize: none;
-    background: var(--color-bg-primary);
-    font-size: 18px;
-    font-family: robotoRegular;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 .bottom_menu {
     width: 100%;
@@ -231,7 +186,6 @@ ul li {
     padding-left: 50px;
     padding-right: 30px;
     display: flex;
-    transition: opacity 0.3s, color 0.3s;
 }
 ul li::before {
     content: '';
